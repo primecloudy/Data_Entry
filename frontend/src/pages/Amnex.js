@@ -270,48 +270,7 @@ function Amnex() {
 
   // Validate form based on service type
   const validateForm = () => {
-    // Basic required fields
-    if (!formData.validatorName || !formData.engineerName || !formData.fleetNumber || 
-        !formData.depo || !formData.imeiNumber || !formData.serviceType) {
-      alert("Please fill all basic required fields");
-      return false;
-    }
-
-    // Service type specific validations
-    switch (formData.serviceType) {
-      case "Preventive":
-        if (!formData.vehicleStatus) {
-          alert("Please select Vehicle Status");
-          return false;
-        }
-        if (Object.keys(formData.preventiveSection).length === 0) {
-          alert("Please fill the Preventive Section");
-          return false;
-        }
-        break;
-      
-      case "Complaints":
-        if (!formData.reportStatus) {
-          alert("Please select Report Status");
-          return false;
-        }
-        break;
-      
-      case "Updates":
-        if (!formData.objective || !formData.updateStatus) {
-          alert("Please fill all Update fields");
-          return false;
-        }
-        if (formData.updateStatus === "Pending" && !formData.reasonForPending) {
-          alert("Please provide reason for pending update");
-          return false;
-        }
-        break;
-      
-      default:
-        break;
-    }
-
+    // Basic required fields - removed validation
     return true;
   };
 
@@ -370,7 +329,7 @@ function Amnex() {
 
       // Send to Google Apps Script
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbw9cZmZlnp-n1gv-VIlf9zGzIw0_0K9neCb2jJUcoytWbx4p_3Geb9UPCA217asXajRfw/exec",
+        "https://script.google.com/macros/s/AKfycbx0DwVD1slAk0ugCz0z3OQmJmy5ZKSIPLOiq69c7diy-Yk_ECZgnp6hLtnpJd4W7DF-hw/exec",
         {
           method: "POST",
           body: JSON.stringify(payload),
@@ -403,7 +362,6 @@ function Amnex() {
           name="odometer"
           value={formData.odometer}
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -432,7 +390,6 @@ function Amnex() {
           type="file"
           name="partFailureImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -442,7 +399,6 @@ function Amnex() {
           name="problemDescription"
           value={formData.problemDescription}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -452,7 +408,6 @@ function Amnex() {
           name="actionTaken"
           value={formData.actionTaken}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -487,7 +442,6 @@ function Amnex() {
           name="odometer"
           value={formData.odometer}
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -516,7 +470,6 @@ function Amnex() {
           type="file"
           name="partFailureImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -545,7 +498,6 @@ function Amnex() {
           name="problemDescription"
           value={formData.problemDescription}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -555,7 +507,6 @@ function Amnex() {
           name="actionTaken"
           value={formData.actionTaken}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -590,7 +541,6 @@ function Amnex() {
           name="odometer"
           value={formData.odometer}
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -619,7 +569,6 @@ function Amnex() {
           type="file"
           name="partFailureImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -629,7 +578,6 @@ function Amnex() {
           type="file"
           name="partReplaceImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -639,7 +587,6 @@ function Amnex() {
           type="file"
           name="complaintCloseImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -668,7 +615,6 @@ function Amnex() {
           name="problemDescription"
           value={formData.problemDescription}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -678,7 +624,6 @@ function Amnex() {
           name="actionTaken"
           value={formData.actionTaken}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -711,7 +656,6 @@ function Amnex() {
         name="remarks"
         value={formData.remarks}
         onChange={handleChange}
-        required
       ></textarea>
     </div>
   );
@@ -725,7 +669,6 @@ function Amnex() {
           type="file"
           name="diagnosticsFile"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -735,7 +678,6 @@ function Amnex() {
           type="file"
           name="deviceInfoFile"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -749,7 +691,6 @@ function Amnex() {
               value="No"
               checked={formData.technicalSupport === "No"}
               onChange={handleChange}
-              required
             />
             No
           </label>
@@ -760,7 +701,6 @@ function Amnex() {
               value="Yes"
               checked={formData.technicalSupport === "Yes"}
               onChange={handleChange}
-              required
             />
             Yes
           </label>
@@ -777,7 +717,6 @@ function Amnex() {
               value="No"
               checked={formData.tamperingHappened === "No"}
               onChange={handleChange}
-              required
             />
             No
           </label>
@@ -788,7 +727,6 @@ function Amnex() {
               value="Yes"
               checked={formData.tamperingHappened === "Yes"}
               onChange={handleChange}
-              required
             />
             Yes
           </label>
@@ -803,7 +741,6 @@ function Amnex() {
               type="file"
               name="tamperingImage"
               onChange={handleChange}
-              required
             />
           </div>
 
@@ -857,7 +794,6 @@ function Amnex() {
               value="Valid"
               checked={formData.validation === "Valid"}
               onChange={handleChange}
-              required
             />
             Valid
           </label>
@@ -868,7 +804,6 @@ function Amnex() {
               value="Invalid"
               checked={formData.validation === "Invalid"}
               onChange={handleChange}
-              required
             />
             Invalid
           </label>
@@ -970,7 +905,6 @@ function Amnex() {
           name="vehicleStatus"
           value={formData.vehicleStatus}
           onChange={handleChange}
-          required
         >
           <option value="">Select</option>
           <option value="Open">Open</option>
@@ -1013,7 +947,6 @@ function Amnex() {
           name="reportStatus"
           value={formData.reportStatus}
           onChange={handleChange}
-          required
         >
           <option value="">Select</option>
           <option value="Open">Open</option>
@@ -1048,7 +981,6 @@ function Amnex() {
           name="objective"
           value={formData.objective}
           onChange={handleChange}
-          required
         >
           <option value="">Select</option>
           <option value="XML">XML</option>
@@ -1065,7 +997,6 @@ function Amnex() {
           type="file"
           name="updatesFile"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -1075,7 +1006,6 @@ function Amnex() {
           name="updateStatus"
           value={formData.updateStatus}
           onChange={handleChange}
-          required
         >
           <option value="">Select</option>
           <option value="Updated">Updated</option>
@@ -1090,7 +1020,6 @@ function Amnex() {
             name="reasonForPending"
             value={formData.reasonForPending}
             onChange={handleChange}
-            required
           ></textarea>
         </div>
       )}
@@ -1112,7 +1041,6 @@ function Amnex() {
             name="validatorName"
             value={formData.validatorName}
             onChange={handleChange}
-            required
             disabled
           />
         </div>
@@ -1124,7 +1052,6 @@ function Amnex() {
             name="engineerName" 
             value={formData.engineerName}
             onChange={handleChange}
-            required
           >
             <option value="">-- Select Engineer --</option>
             {engineerOptions.map(engineer => (
@@ -1143,7 +1070,6 @@ function Amnex() {
             value={formData.fleetNumber}
             onChange={handleFleetNumberChange}
             placeholder="Type Fleet Number"
-            required
           />
           {filteredFleets.length > 0 && (
             <ul className="dropdown" style={{
@@ -1189,7 +1115,6 @@ function Amnex() {
             value={formData.depo}
             onChange={handleChange}
             placeholder="Enter Depot Name"
-            required
           />
         </div>
 
@@ -1200,7 +1125,6 @@ function Amnex() {
             type="text"
             value={formData.imeiNumber}
             onChange={(e) => setFormData((prev) => ({ ...prev, imeiNumber: e.target.value }))}
-            required
           />
         </div>
 
@@ -1211,7 +1135,6 @@ function Amnex() {
             name="serviceType"
             value={formData.serviceType}
             onChange={handleChange}
-            required
           >
             <option value="">Select</option>
             <option value="Preventive">Preventive</option>

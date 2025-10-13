@@ -263,48 +263,6 @@ function OGL() {
 
   // Validate form based on service type
   const validateForm = () => {
-    // Basic required fields
-    if (!formData.validatorName || !formData.engineerName || !formData.fleetNumber || 
-        !formData.depo || !formData.imeiNumber || !formData.serviceType) {
-      alert("Please fill all basic required fields");
-      return false;
-    }
-
-    // Service type specific validations
-    switch (formData.serviceType) {
-      case "Preventive":
-        if (!formData.vehicleStatus) {
-          alert("Please select Vehicle Status");
-          return false;
-        }
-        if (Object.keys(formData.preventiveSection).length === 0) {
-          alert("Please fill the Preventive Section");
-          return false;
-        }
-        break;
-      
-      case "Complaints":
-        if (!formData.reportStatus) {
-          alert("Please select Report Status");
-          return false;
-        }
-        break;
-      
-      case "Updates":
-        if (!formData.objective || !formData.updateStatus) {
-          alert("Please fill all Update fields");
-          return false;
-        }
-        if (formData.updateStatus === "Pending" && !formData.reasonForPending) {
-          alert("Please provide reason for pending update");
-          return false;
-        }
-        break;
-      
-      default:
-        break;
-    }
-
     return true;
   };
 
@@ -363,7 +321,7 @@ function OGL() {
 
       // Send to Google Apps Script
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbyUDr5Kk6Amoz7yjsM_sL-d8dmESw77U924N8lqoqvigDZErj-cdNIz-cyhklf_vBDcfA/exec",
+        "https://script.google.com/macros/s/AKfycbzpxtJzS2fD2IdWNChjYtxf9hJM-GQp0zXUpN4FqeZX-jUTk9Y90f2cR-mKNsdQDMKbEQ/exec",
         {
           method: "POST",
           body: JSON.stringify(payload),
@@ -396,7 +354,6 @@ function OGL() {
           name="odometer"
           value={formData.odometer}
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -425,7 +382,6 @@ function OGL() {
           type="file"
           name="partFailureImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -435,7 +391,6 @@ function OGL() {
           name="problemDescription"
           value={formData.problemDescription}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -445,7 +400,6 @@ function OGL() {
           name="actionTaken"
           value={formData.actionTaken}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -480,7 +434,6 @@ function OGL() {
           name="odometer"
           value={formData.odometer}
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -509,7 +462,6 @@ function OGL() {
           type="file"
           name="partFailureImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -538,7 +490,6 @@ function OGL() {
           name="problemDescription"
           value={formData.problemDescription}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -548,7 +499,6 @@ function OGL() {
           name="actionTaken"
           value={formData.actionTaken}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -583,7 +533,6 @@ function OGL() {
           name="odometer"
           value={formData.odometer}
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -612,7 +561,6 @@ function OGL() {
           type="file"
           name="partFailureImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -622,7 +570,6 @@ function OGL() {
           type="file"
           name="partReplaceImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -632,7 +579,6 @@ function OGL() {
           type="file"
           name="complaintCloseImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -661,7 +607,6 @@ function OGL() {
           name="problemDescription"
           value={formData.problemDescription}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -671,7 +616,6 @@ function OGL() {
           name="actionTaken"
           value={formData.actionTaken}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -704,7 +648,6 @@ function OGL() {
         name="remarks"
         value={formData.remarks}
         onChange={handleChange}
-        required
       ></textarea>
     </div>
   );
@@ -718,7 +661,6 @@ function OGL() {
           type="file"
           name="diagnosticsFile"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -728,7 +670,6 @@ function OGL() {
           type="file"
           name="deviceInfoFile"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -742,7 +683,6 @@ function OGL() {
               value="No"
               checked={formData.technicalSupport === "No"}
               onChange={handleChange}
-              required
             />
             No
           </label>
@@ -753,7 +693,6 @@ function OGL() {
               value="Yes"
               checked={formData.technicalSupport === "Yes"}
               onChange={handleChange}
-              required
             />
             Yes
           </label>
@@ -770,7 +709,6 @@ function OGL() {
               value="No"
               checked={formData.tamperingHappened === "No"}
               onChange={handleChange}
-              required
             />
             No
           </label>
@@ -781,7 +719,6 @@ function OGL() {
               value="Yes"
               checked={formData.tamperingHappened === "Yes"}
               onChange={handleChange}
-              required
             />
             Yes
           </label>
@@ -796,7 +733,6 @@ function OGL() {
               type="file"
               name="tamperingImage"
               onChange={handleChange}
-              required
             />
           </div>
 
@@ -850,7 +786,6 @@ function OGL() {
               value="Valid"
               checked={formData.validation === "Valid"}
               onChange={handleChange}
-              required
             />
             Valid
           </label>
@@ -861,7 +796,6 @@ function OGL() {
               value="Invalid"
               checked={formData.validation === "Invalid"}
               onChange={handleChange}
-              required
             />
             Invalid
           </label>
@@ -963,7 +897,6 @@ function OGL() {
           name="vehicleStatus"
           value={formData.vehicleStatus}
           onChange={handleChange}
-          required
         >
           <option value="">Select</option>
           <option value="Open">Open</option>
@@ -1006,7 +939,6 @@ function OGL() {
           name="reportStatus"
           value={formData.reportStatus}
           onChange={handleChange}
-          required
         >
           <option value="">Select</option>
           <option value="Open">Open</option>
@@ -1041,7 +973,6 @@ function OGL() {
           name="objective"
           value={formData.objective}
           onChange={handleChange}
-          required
         >
           <option value="">Select</option>
           <option value="XML">XML</option>
@@ -1058,7 +989,6 @@ function OGL() {
           type="file"
           name="updatesFile"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -1068,7 +998,6 @@ function OGL() {
           name="updateStatus"
           value={formData.updateStatus}
           onChange={handleChange}
-          required
         >
           <option value="">Select</option>
           <option value="Updated">Updated</option>
@@ -1083,7 +1012,6 @@ function OGL() {
             name="reasonForPending"
             value={formData.reasonForPending}
             onChange={handleChange}
-            required
           ></textarea>
         </div>
       )}
@@ -1105,7 +1033,6 @@ function OGL() {
             name="validatorName"
             value={formData.validatorName}
             onChange={handleChange}
-            required
             disabled
           />
         </div>
@@ -1117,7 +1044,6 @@ function OGL() {
             name="engineerName" 
             value={formData.engineerName}
             onChange={handleChange}
-            required
           >
             <option value="">-- Select Engineer --</option>
             {engineerOptions.map(engineer => (
@@ -1136,7 +1062,6 @@ function OGL() {
             value={formData.fleetNumber}
             onChange={handleFleetNumberChange}
             placeholder="Type Fleet Number"
-            required
           />
           {filteredFleets.length > 0 && (
             <ul className="dropdown" style={{
@@ -1182,7 +1107,6 @@ function OGL() {
             value={formData.depo}
             onChange={handleChange}
             placeholder="Enter Depot Name"
-            required
           />
         </div>
 
@@ -1193,7 +1117,6 @@ function OGL() {
             type="text"
             value={formData.imeiNumber}
             onChange={(e) => setFormData((prev) => ({ ...prev, imeiNumber: e.target.value }))}
-            required
           />
         </div>
 
@@ -1204,7 +1127,6 @@ function OGL() {
             name="serviceType"
             value={formData.serviceType}
             onChange={handleChange}
-            required
           >
             <option value="">Select</option>
             <option value="Preventive">Preventive</option>

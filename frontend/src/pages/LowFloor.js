@@ -273,48 +273,6 @@ function LowFloor() {
 
   // Validate form based on service type
   const validateForm = () => {
-    // Basic required fields
-    if (!formData.validatorName || !formData.engineerName || !formData.fleetNumber || 
-        !formData.depo || !formData.imeiNumber || !formData.serviceType) {
-      alert("Please fill all basic required fields");
-      return false;
-    }
-
-    // Service type specific validations
-    switch (formData.serviceType) {
-      case "Preventive":
-        if (!formData.vehicleStatus) {
-          alert("Please select Vehicle Status");
-          return false;
-        }
-        if (Object.keys(formData.preventiveSection).length === 0) {
-          alert("Please fill the Preventive Section");
-          return false;
-        }
-        break;
-      
-      case "Complaints":
-        if (!formData.reportStatus) {
-          alert("Please select Report Status");
-          return false;
-        }
-        break;
-      
-      case "Updates":
-        if (!formData.objective || !formData.updateStatus) {
-          alert("Please fill all Update fields");
-          return false;
-        }
-        if (formData.updateStatus === "Pending" && !formData.reasonForPending) {
-          alert("Please provide reason for pending update");
-          return false;
-        }
-        break;
-      
-      default:
-        break;
-    }
-
     return true;
   };
 
@@ -373,7 +331,7 @@ function LowFloor() {
 
       // Send to Google Apps Script
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbxiw-KL1uETqs7DVF_JffXJAXJcaDkgDsNafauDSPit8w-dVyow2vj90deqiM8qsYcZqw/exec",
+        "https://script.google.com/macros/s/AKfycbzNeWnliPESDlbZfyohLhQRHla6_S2Xj2L8P2ySpp7ryEAfg4AYSqACNrF0QiJYSm_PWQ/exec",
         {
           method: "POST",
           body: JSON.stringify(payload),
@@ -406,7 +364,6 @@ function LowFloor() {
           name="odometer"
           value={formData.odometer}
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -435,7 +392,6 @@ function LowFloor() {
           type="file"
           name="partFailureImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -445,7 +401,6 @@ function LowFloor() {
           name="problemDescription"
           value={formData.problemDescription}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -455,7 +410,6 @@ function LowFloor() {
           name="actionTaken"
           value={formData.actionTaken}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -490,7 +444,6 @@ function LowFloor() {
           name="odometer"
           value={formData.odometer}
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -519,7 +472,6 @@ function LowFloor() {
           type="file"
           name="partFailureImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -548,7 +500,6 @@ function LowFloor() {
           name="problemDescription"
           value={formData.problemDescription}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -558,7 +509,6 @@ function LowFloor() {
           name="actionTaken"
           value={formData.actionTaken}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -593,7 +543,6 @@ function LowFloor() {
           name="odometer"
           value={formData.odometer}
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -622,7 +571,6 @@ function LowFloor() {
           type="file"
           name="partFailureImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -632,7 +580,6 @@ function LowFloor() {
           type="file"
           name="partReplaceImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -642,7 +589,6 @@ function LowFloor() {
           type="file"
           name="complaintCloseImage"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -671,7 +617,6 @@ function LowFloor() {
           name="problemDescription"
           value={formData.problemDescription}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -681,7 +626,6 @@ function LowFloor() {
           name="actionTaken"
           value={formData.actionTaken}
           onChange={handleChange}
-          required
         ></textarea>
       </div>
 
@@ -714,7 +658,6 @@ function LowFloor() {
         name="remarks"
         value={formData.remarks}
         onChange={handleChange}
-        required
       ></textarea>
     </div>
   );
@@ -728,7 +671,6 @@ function LowFloor() {
           type="file"
           name="diagnosticsFile"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -738,7 +680,6 @@ function LowFloor() {
           type="file"
           name="deviceInfoFile"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -752,7 +693,6 @@ function LowFloor() {
               value="No"
               checked={formData.technicalSupport === "No"}
               onChange={handleChange}
-              required
             />
             No
           </label>
@@ -763,7 +703,6 @@ function LowFloor() {
               value="Yes"
               checked={formData.technicalSupport === "Yes"}
               onChange={handleChange}
-              required
             />
             Yes
           </label>
@@ -780,7 +719,6 @@ function LowFloor() {
               value="No"
               checked={formData.tamperingHappened === "No"}
               onChange={handleChange}
-              required
             />
             No
           </label>
@@ -791,7 +729,6 @@ function LowFloor() {
               value="Yes"
               checked={formData.tamperingHappened === "Yes"}
               onChange={handleChange}
-              required
             />
             Yes
           </label>
@@ -806,7 +743,6 @@ function LowFloor() {
               type="file"
               name="tamperingImage"
               onChange={handleChange}
-              required
             />
           </div>
 
@@ -860,7 +796,6 @@ function LowFloor() {
               value="Valid"
               checked={formData.validation === "Valid"}
               onChange={handleChange}
-              required
             />
             Valid
           </label>
@@ -871,7 +806,6 @@ function LowFloor() {
               value="Invalid"
               checked={formData.validation === "Invalid"}
               onChange={handleChange}
-              required
             />
             Invalid
           </label>
@@ -973,7 +907,6 @@ function LowFloor() {
           name="vehicleStatus"
           value={formData.vehicleStatus}
           onChange={handleChange}
-          required
         >
           <option value="">Select</option>
           <option value="Open">Open</option>
@@ -1016,7 +949,6 @@ function LowFloor() {
           name="reportStatus"
           value={formData.reportStatus}
           onChange={handleChange}
-          required
         >
           <option value="">Select</option>
           <option value="Open">Open</option>
@@ -1051,7 +983,6 @@ function LowFloor() {
           name="objective"
           value={formData.objective}
           onChange={handleChange}
-          required
         >
           <option value="">Select</option>
           <option value="XML">XML</option>
@@ -1068,7 +999,6 @@ function LowFloor() {
           type="file"
           name="updatesFile"
           onChange={handleChange}
-          required
         />
       </div>
 
@@ -1078,7 +1008,6 @@ function LowFloor() {
           name="updateStatus"
           value={formData.updateStatus}
           onChange={handleChange}
-          required
         >
           <option value="">Select</option>
           <option value="Updated">Updated</option>
@@ -1093,7 +1022,6 @@ function LowFloor() {
             name="reasonForPending"
             value={formData.reasonForPending}
             onChange={handleChange}
-            required
           ></textarea>
         </div>
       )}
@@ -1115,7 +1043,6 @@ function LowFloor() {
             name="validatorName"
             value={formData.validatorName}
             onChange={handleChange}
-            required
             disabled
           />
         </div>
@@ -1127,7 +1054,6 @@ function LowFloor() {
             name="engineerName" 
             value={formData.engineerName}
             onChange={handleChange}
-            required
           >
             <option value="">-- Select Engineer --</option>
             {engineerOptions.map(engineer => (
@@ -1146,7 +1072,6 @@ function LowFloor() {
             value={formData.fleetNumber}
             onChange={handleFleetNumberChange}
             placeholder="Type Fleet Number"
-            required
           />
           {filteredFleets.length > 0 && (
             <ul className="dropdown" style={{
@@ -1192,7 +1117,6 @@ function LowFloor() {
             value={formData.depo}
             onChange={handleChange}
             placeholder="Enter Depot Name"
-            required
           />
         </div>
 
@@ -1203,7 +1127,6 @@ function LowFloor() {
             type="text"
             value={formData.imeiNumber}
             onChange={(e) => setFormData((prev) => ({ ...prev, imeiNumber: e.target.value }))}
-            required
           />
         </div>
 
@@ -1214,7 +1137,6 @@ function LowFloor() {
             name="serviceType"
             value={formData.serviceType}
             onChange={handleChange}
-            required
           >
             <option value="">Select</option>
             <option value="Preventive">Preventive</option>
