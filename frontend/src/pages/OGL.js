@@ -53,16 +53,16 @@ function OGL() {
 
   // Engineer options
   const engineerOptions = [
-  { value: "Avinash", label: "Avinash" },
-  { value: "Hrushikesh", label: "Hrushikesh" },
-  { value: "Imran", label: "Imran" },
-  { value: "Mandaar", label: "Mandaar" },
-  { value: "Naeem Khan", label: "Naeem Khan" },
-  { value: "Rushikesh", label: "Rushikesh" },
-  { value: "Sameer Monde", label: "Sameer Monde" },
-  { value: "Sarvesh", label: "Sarvesh" },
-  { value: "Yuvaraj", label: "Yuvaraj" },
-];
+    { value: "Avinash", label: "Avinash" },
+    { value: "Hrushikesh", label: "Hrushikesh" },
+    { value: "Imran", label: "Imran" },
+    { value: "Mandaar", label: "Mandaar" },
+    { value: "Naeem Khan", label: "Naeem Khan" },
+    { value: "Rushikesh", label: "Rushikesh" },
+    { value: "Sameer Monde", label: "Sameer Monde" },
+    { value: "Sarvesh", label: "Sarvesh" },
+    { value: "Yuvaraj", label: "Yuvaraj" },
+  ];
 
   // Options for dropdowns
   const partFailureOptions = [
@@ -258,6 +258,7 @@ function OGL() {
       missingComponent: [],
       replacedComponent: [],
       validation: "",
+      projectName: "",
     });
   };
 
@@ -269,7 +270,7 @@ function OGL() {
   // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -321,7 +322,7 @@ function OGL() {
 
       // Send to Google Apps Script
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbzpxtJzS2fD2IdWNChjYtxf9hJM-GQp0zXUpN4FqeZX-jUTk9Y90f2cR-mKNsdQDMKbEQ/exec",
+        "https://script.google.com/macros/s/AKfycbxdDrSCxU7OVajv_C4_cqjkXdfNmUeOtOBJqnVPg5EfiMZ1JgjIQUiZx2wecwvSKP-VnA/exec",
         {
           method: "POST",
           body: JSON.stringify(payload),
@@ -775,7 +776,7 @@ function OGL() {
           </div>
         </>
       )}
-      
+
       <div className="form-group">
         <label>Validation:</label>
         <div className="radio-group">
@@ -816,7 +817,7 @@ function OGL() {
           <button type="button" onClick={() => handleMarkAll("NOT_OKAY")} className="btn btn-danger btn-sm">
             All Not OK
           </button>
-          
+
         </div>
 
         <div className="preventive-table-container">
@@ -1025,6 +1026,17 @@ function OGL() {
     <div className="switch container mt-5">
       <h2>OGL Service Form</h2>
       <form onSubmit={handleSubmit} className="form-container">
+        <div className="form-group">
+          <label>Project Name:</label>
+          <input
+            type="text"
+            name="projectName"
+            value="Ogl"        // 👈 Auto-filled value
+            readOnly             // 👈 Makes it non-editable
+          />
+        </div>
+
+
         {/* Validator Name */}
         <div className="form-group">
           <label>Validator:</label>
@@ -1040,8 +1052,8 @@ function OGL() {
         {/* Engineer Name */}
         <div className="form-group">
           <label>Engineer Name:</label>
-          <select 
-            name="engineerName" 
+          <select
+            name="engineerName"
             value={formData.engineerName}
             onChange={handleChange}
           >

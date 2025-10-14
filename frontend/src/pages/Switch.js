@@ -53,29 +53,29 @@ function Switch() {
 
   // Engineer options
   const engineerOptions = [
-  { value: "Abinesh", label: "Abinesh" },
-  { value: "Abinesh V", label: "Abinesh V" },
-  { value: "Alex Pandian", label: "Alex Pandian" },
-  { value: "Anbarasu", label: "Anbarasu" },
-  { value: "Avinash", label: "Avinash" },
-  { value: "Dinesh Kumar", label: "Dinesh Kumar" },
-  { value: "Dinesh S", label: "Dinesh S" },
-  { value: "Kaif", label: "Kaif" },
-  { value: "Kirubakaran", label: "Kirubakaran" },
-  { value: "Mani Bharathi", label: "Mani Bharathi" },
-  { value: "Mandaar", label: "Mandaar" },
-  { value: "Muthukumar", label: "Muthukumar" },
-  { value: "Naeem Khan", label: "Naeem Khan" },
-  { value: "Prashant", label: "Prashant" },
-  { value: "Renganathan", label: "Renganathan" },
-  { value: "Rushikesh", label: "Rushikesh" },
-  { value: "Sameer Monde", label: "Sameer Monde" },
-  { value: "Sabarish", label: "Sabarish" },
-  { value: "Sarvesh", label: "Sarvesh" },
-  { value: "Yogesh", label: "Yogesh" },
-  { value: "Yuvaraj", label: "Yuvaraj" },
-  { value: "Imran", label: "Imran" },
-];
+    { value: "Abinesh", label: "Abinesh" },
+    { value: "Abinesh V", label: "Abinesh V" },
+    { value: "Alex Pandian", label: "Alex Pandian" },
+    { value: "Anbarasu", label: "Anbarasu" },
+    { value: "Avinash", label: "Avinash" },
+    { value: "Dinesh Kumar", label: "Dinesh Kumar" },
+    { value: "Dinesh S", label: "Dinesh S" },
+    { value: "Kaif", label: "Kaif" },
+    { value: "Kirubakaran", label: "Kirubakaran" },
+    { value: "Mani Bharathi", label: "Mani Bharathi" },
+    { value: "Mandaar", label: "Mandaar" },
+    { value: "Muthukumar", label: "Muthukumar" },
+    { value: "Naeem Khan", label: "Naeem Khan" },
+    { value: "Prashant", label: "Prashant" },
+    { value: "Renganathan", label: "Renganathan" },
+    { value: "Rushikesh", label: "Rushikesh" },
+    { value: "Sameer Monde", label: "Sameer Monde" },
+    { value: "Sabarish", label: "Sabarish" },
+    { value: "Sarvesh", label: "Sarvesh" },
+    { value: "Yogesh", label: "Yogesh" },
+    { value: "Yuvaraj", label: "Yuvaraj" },
+    { value: "Imran", label: "Imran" },
+  ];
 
   // Options for dropdowns
   const partFailureOptions = [
@@ -271,6 +271,7 @@ function Switch() {
       missingComponent: [],
       replacedComponent: [],
       validation: "",
+      projectName: "",
     });
   };
 
@@ -282,7 +283,7 @@ function Switch() {
   // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -334,7 +335,7 @@ function Switch() {
 
       // Send to Google Apps Script
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbw2CVXQsPcovN9IU_XYfsBwh1JK-udL4tZEFvtVZYxc5gEDZt58yX0w3seVH8GHtDbtyQ/exec",
+        "https://script.google.com/macros/s/AKfycbwLJVAhIgaWTby_84_s_GiSP-GWZy4BoiHL6ccAjeB8yVI2d8qEYUxkv8yXt8Iwq2xc5w/exec",
         {
           method: "POST",
           body: JSON.stringify(payload),
@@ -788,7 +789,7 @@ function Switch() {
           </div>
         </>
       )}
-      
+
       <div className="form-group">
         <label>Validation:</label>
         <div className="radio-group">
@@ -829,7 +830,7 @@ function Switch() {
           <button type="button" onClick={() => handleMarkAll("NOT_OKAY")} className="btn btn-danger btn-sm">
             All Not OK
           </button>
-          
+
         </div>
 
         <div className="preventive-table-container">
@@ -1038,6 +1039,17 @@ function Switch() {
     <div className="switch container mt-5">
       <h2>Switch Service Form</h2>
       <form onSubmit={handleSubmit} className="form-container">
+        <div className="form-group">
+          <label>Project Name:</label>
+          <input
+            type="text"
+            name="projectName"
+            value="Switch"        // 👈 Auto-filled value
+            readOnly             // 👈 Makes it non-editable
+          />
+        </div>
+
+
         {/* Validator Name */}
         <div className="form-group">
           <label>Validator:</label>
@@ -1053,8 +1065,8 @@ function Switch() {
         {/* Engineer Name */}
         <div className="form-group">
           <label>Engineer Name:</label>
-          <select 
-            name="engineerName" 
+          <select
+            name="engineerName"
             value={formData.engineerName}
             onChange={handleChange}
           >

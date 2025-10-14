@@ -49,26 +49,27 @@ function Amnex() {
     missingComponent: [],
     replacedComponent: [],
     validation: "",
+    projectName: "",
   });
 
   // Engineer options
   const engineerOptions = [
-  { value: "Abinesh", label: "Abinesh" },
-  { value: "Abinesh V", label: "Abinesh V" },
-  { value: "Alex Pandian", label: "Alex Pandian" },
-  { value: "Anbarasu", label: "Anbarasu" },
-  { value: "Dinesh S", label: "Dinesh S" },
-  { value: "Dinesh Kumar", label: "Dinesh Kumar" },
-  { value: "Gyanaranjan", label: "Gyanaranjan" },
-  { value: "Kaif", label: "Kaif" },
-  { value: "Kirubakaran", label: "Kirubakaran" },
-  { value: "Mani Bharathi", label: "Mani Bharathi" },
-  { value: "Muthukumar", label: "Muthukumar" },
-  { value: "Prashant", label: "Prashant" },
-  { value: "Renganathan", label: "Renganathan" },
-  { value: "Sabarish", label: "Sabarish" },
-  { value: "Yogesh", label: "Yogesh" },
-];
+    { value: "Abinesh", label: "Abinesh" },
+    { value: "Abinesh V", label: "Abinesh V" },
+    { value: "Alex Pandian", label: "Alex Pandian" },
+    { value: "Anbarasu", label: "Anbarasu" },
+    { value: "Dinesh S", label: "Dinesh S" },
+    { value: "Dinesh Kumar", label: "Dinesh Kumar" },
+    { value: "Gyanaranjan", label: "Gyanaranjan" },
+    { value: "Kaif", label: "Kaif" },
+    { value: "Kirubakaran", label: "Kirubakaran" },
+    { value: "Mani Bharathi", label: "Mani Bharathi" },
+    { value: "Muthukumar", label: "Muthukumar" },
+    { value: "Prashant", label: "Prashant" },
+    { value: "Renganathan", label: "Renganathan" },
+    { value: "Sabarish", label: "Sabarish" },
+    { value: "Yogesh", label: "Yogesh" },
+  ];
 
 
   // Options for dropdowns
@@ -277,7 +278,7 @@ function Amnex() {
   // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -329,7 +330,7 @@ function Amnex() {
 
       // Send to Google Apps Script
       const response = await fetch(
-        "https://script.google.com/macros/s/AKfycbx0DwVD1slAk0ugCz0z3OQmJmy5ZKSIPLOiq69c7diy-Yk_ECZgnp6hLtnpJd4W7DF-hw/exec",
+        "https://script.google.com/macros/s/AKfycbwnOePdgjmOfiyXlV5EIcQhZbCJQGZygoa40RCcLXJL_8gz55NOt2NnVGeJajjEOt6rBw/exec",
         {
           method: "POST",
           body: JSON.stringify(payload),
@@ -783,7 +784,7 @@ function Amnex() {
           </div>
         </>
       )}
-      
+
       <div className="form-group">
         <label>Validation:</label>
         <div className="radio-group">
@@ -824,7 +825,7 @@ function Amnex() {
           <button type="button" onClick={() => handleMarkAll("NOT_OKAY")} className="btn btn-danger btn-sm">
             All Not OK
           </button>
-          
+
         </div>
 
         <div className="preventive-table-container">
@@ -1033,6 +1034,17 @@ function Amnex() {
     <div className="switch container mt-5">
       <h2>Amnex Service Form</h2>
       <form onSubmit={handleSubmit} className="form-container">
+
+        <div className="form-group">
+          <label>Project Name:</label>
+          <input
+            type="text"
+            name="projectName"
+            value="Amnex"        // 👈 Auto-filled value
+            readOnly             // 👈 Makes it non-editable
+          />
+        </div>
+
         {/* Validator Name */}
         <div className="form-group">
           <label>Validator:</label>
@@ -1048,8 +1060,8 @@ function Amnex() {
         {/* Engineer Name */}
         <div className="form-group">
           <label>Engineer Name:</label>
-          <select 
-            name="engineerName" 
+          <select
+            name="engineerName"
             value={formData.engineerName}
             onChange={handleChange}
           >

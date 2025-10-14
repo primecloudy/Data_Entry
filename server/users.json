@@ -8,5 +8,15 @@
     "username": "raj",
     "password": "raj123",
     "role": "user"
+  },
+  {
+    "username": "Validator",
+    "password": "Prime@121",
+    "role": "user"
+  },
+  {
+    "username": "Validator",
+    "password": "Prime@212",
+    "role": "user"
   }
 ]
