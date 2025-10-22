@@ -78,6 +78,7 @@ function Amnex() {
   const partFailureOptions = [
     { value: "NONE", label: "NONE" },
     { value: "MNVR", label: "MNVR" },
+    { value: "HARNESS", label: "HARNESS" },
     { value: "BDC", label: "BDC" },
     { value: "S-CAM", label: "S-CAM" },
     { value: "R-CAM", label: "R-CAM" },

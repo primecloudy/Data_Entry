@@ -10,12 +10,12 @@
     "role": "user"
   },
   {
-    "username": "Validator",
+    "username": "Validator1",
     "password": "Prime@121",
     "role": "user"
   },
   {
-    "username": "Validator",
+    "username": "Validator2",
     "password": "Prime@212",
     "role": "user"
   }
