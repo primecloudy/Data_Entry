@@ -78,6 +78,7 @@ function LowFloor() {
   // Options for dropdowns
   const partFailureOptions = [
     { value: "NONE", label: "NONE" },
+    { value: "MNVR", label: "MNVR" },
     { value: "BDC", label: "BDC" },
     { value: "S-CAM", label: "S-CAM" },
     { value: "R-CAM", label: "R-CAM" },

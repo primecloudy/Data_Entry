@@ -64,10 +64,12 @@ function Amnex() {
     { value: "Kaif", label: "Kaif" },
     { value: "Kirubakaran", label: "Kirubakaran" },
     { value: "Mani Bharathi", label: "Mani Bharathi" },
+    { value: "Maalik", label: "Maalik" },
     { value: "Muthukumar", label: "Muthukumar" },
     { value: "Prashant", label: "Prashant" },
     { value: "Renganathan", label: "Renganathan" },
     { value: "Sabarish", label: "Sabarish" },
+    { value: "Nithin", label: "Nithin" },
     { value: "Yogesh", label: "Yogesh" },
   ];
 
@@ -75,6 +77,7 @@ function Amnex() {
   // Options for dropdowns
   const partFailureOptions = [
     { value: "NONE", label: "NONE" },
+    { value: "MNVR", label: "MNVR" },
     { value: "BDC", label: "BDC" },
     { value: "S-CAM", label: "S-CAM" },
     { value: "R-CAM", label: "R-CAM" },
