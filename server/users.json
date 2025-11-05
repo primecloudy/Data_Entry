@@ -18,5 +18,15 @@
     "username": "Validator2",
     "password": "Prime@212",
     "role": "user"
+  },
+  {
+    "username": "Validator3",
+    "password": "Prime@789",
+    "role": "user"
+  },
+  {
+    "username": "Validator4",
+    "password": "Prime@453",
+    "role": "user"
   }
 ]
