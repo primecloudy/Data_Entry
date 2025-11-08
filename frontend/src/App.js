@@ -4,31 +4,20 @@ import { AuthProvider, AuthContext } from "./context/AuthContext";
 
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
-import Attendance from "./pages/Attendance";
 import Home from "./pages/Home";
 import Amnex from "./pages/Amnex";
 import SwitchPage from "./pages/Switch";
-import LogoutAttendance from "./pages/LogoutAttendance";
 import OGL from "./pages/OGL";
+import Data from "./pages/Data";
 import LowFloor from "./pages/LowFloor";
 
 // ✅ PrivateRoute for role-based protection
 const PrivateRoute = ({ children, role }) => {
-  const { user, attendanceDone } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   if (!user) return <Navigate to="/login" />;
 
-  if (role === "admin" && user.role !== "admin") return <Navigate to="/" />;
-
-  // Only enforce attendance before home, not on logout
-  if (
-    role === "user" &&
-    user.role === "user" &&
-    !attendanceDone &&
-    window.location.pathname !== "/attendance"
-  ) {
-    return <Navigate to="/attendance" />;
-  }
+  if (role === "admin" && user.role !== "admin") return <Navigate to="/home" />;
 
   return children;
 };
@@ -41,23 +30,12 @@ function App() {
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/login" element={<Login />} />
 
-
           {/* Admin Dashboard */}
           <Route
             path="/dashboard"
             element={
               <PrivateRoute role="admin">
                 <Dashboard />
-              </PrivateRoute>
-            }
-          />
-
-          {/* User Attendance (only at login) */}
-          <Route
-            path="/attendance"
-            element={
-              <PrivateRoute role="user">
-                <Attendance />
               </PrivateRoute>
             }
           />
@@ -77,9 +55,7 @@ function App() {
           <Route path="/LowFloor" element={<LowFloor />} />
           <Route path="/switch" element={<SwitchPage />} />
           <Route path="/OGL" element={<OGL />} />
-
-          {/* Logout Attendance */}
-          <Route path="/logoutattendance" element={<LogoutAttendance />} />
+          <Route path="/Data" element={<Data />} />
         </Routes>
       </Router>
     </AuthProvider>

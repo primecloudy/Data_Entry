@@ -97,7 +97,7 @@ function Home() {
 
         {/* Cards Section */}
         <div className="cards-container">
-          <Link to="/amnex" className="card amnex-card">
+          {/* <Link to="/amnex" className="card amnex-card">
             <div className="card-icon">🚌</div>
             <div className="card-content">
               <h3>Amnex</h3>
@@ -131,6 +131,14 @@ function Home() {
             <div className="card-content">
               <h3>OGL</h3>
               <p>Access OGL maintenance form</p>
+            </div>
+            <div className="card-arrow">→</div>
+          </Link> */}
+           <Link to="/Data" className="card ogl-card">
+            <div className="card-icon">🚍</div>
+            <div className="card-content">
+              <h3>Data Entry Form</h3>
+              <p>Access Data Entry maintenance form</p>
             </div>
             <div className="card-arrow">→</div>
           </Link>
