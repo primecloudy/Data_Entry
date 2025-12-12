@@ -11,15 +11,20 @@ function Data() {
     const [submitting, setSubmitting] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
 
-    // Form state
+    // Form state - Updated with new fields
     const [formData, setFormData] = useState({
         validatorName: "",
         engineerName: "",
         depo: "",
         fleetNumber: "",
         imeiNumber: "",
+        simId: "", // New field
+        vinNumber: "", // New field
+        newImeiNumber: "", // New field
         serviceType: "",
-         projectName: "",
+        projectName: "",
+        // Check Status specific
+        checkType: "",
         // Preventive specific
         preventiveSection: {},
         vehicleStatus: "",
@@ -50,159 +55,217 @@ function Data() {
         missingComponent: [],
         replacedComponent: [],
         validation: "",
-       
     });
 
-    // Engineer options
+    // Engineer options (unchanged)
     const engineerOptions = [
-  { value: "Adhikesavan", label: "Adhikesavan" },
-  { value: "Adithiya", label: "Adithiya" },
-  { value: "Adaikalraj", label: "Adaikalraj" },
-  { value: "Ahamed Irfan", label: "Ahamed Irfan" },
-  { value: "Ahino Alex", label: "Ahino Alex" },
-  { value: "Ahs", label: "Ahs" },
-  { value: "Alex Pandian", label: "Alex Pandian" },
-  { value: "Alphino Alex", label: "Alphino Alex" },
-  { value: "Anbarasu", label: "Anbarasu" },
-  { value: "Aravindan", label: "Aravindan" },
-  { value: "Arivazhagan", label: "Arivazhagan" },
-  { value: "Arul Manikaraj", label: "Arul Manikaraj" },
-  { value: "Avinesh", label: "Avinesh" },
-  { value: "Bagavath", label: "Bagavath" },
-  { value: "Bala", label: "Bala" },
-  { value: "Balaji", label: "Balaji" },
-  { value: "Balan", label: "Balan" },
-  { value: "Bharathvaasan", label: "Bharathvaasan" },
-  { value: "Chandra", label: "Chandra" },
-  { value: "Deepak", label: "Deepak" },
-  { value: "Devesh Shivmuni Jaybhaye", label: "Devesh Shivmuni Jaybhaye" },
-  { value: "Dhanu Dh Basha", label: "Dhanu Dh Basha" },
-  { value: "Dharman", label: "Dharman" },
-  { value: "Dharani", label: "Dharani" },
-  { value: "Dhurai Murugan", label: "Dhurai Murugan" },
-  { value: "Dinesh", label: "Dinesh" },
-  { value: "Dinesh Kumar", label: "Dinesh Kumar" },
-  { value: "Dinesh S", label: "Dinesh S" },
-  { value: "Durai Murugan", label: "Durai Murugan" },
-  { value: "Gopi Chand", label: "Gopi Chand" },
-  { value: "Guganeshwaran", label: "Guganeshwaran" },
-  { value: "Gyanaranjan", label: "Gyanaranjan" },
-  { value: "Harish", label: "Harish" },
-  { value: "Hrushikesh Santosh Wathore", label: "Hrushikesh Santosh Wathore" },
-  { value: "Imran", label: "Imran" },
-  { value: "Jaba Durai", label: "Jaba Durai" },
-  { value: "Jegan", label: "Jegan" },
-  { value: "Jayaprakash", label: "Jayaprakash" },
-  { value: "Kailash", label: "Kailash" },
-  { value: "Kaif", label: "Kaif" },
-  { value: "Kalyan Varikuti", label: "Kalyan Varikuti" },
-  { value: "Kannan", label: "Kannan" },
-  { value: "Karthick Nagarajan", label: "Karthick Nagarajan" },
-  { value: "Kirubakaran", label: "Kirubakaran" },
-  { value: "Krishna", label: "Krishna" },
-  { value: "Lokesh", label: "Lokesh" },
-  { value: "Madhan Kumar", label: "Madhan Kumar" },
-  { value: "Maalik", label: "Maalik" },
-  { value: "Manibharathi", label: "Manibharathi" },
-  { value: "Manikandan", label: "Manikandan" },
-  { value: "Manoj Guru", label: "Manoj Guru" },
-  { value: "Manoj Kumar", label: "Manoj Kumar" },
-  { value: "Manoj Kumar T", label: "Manoj Kumar T" },
-  { value: "Mandaar Pankaj Mayekar", label: "Mandaar Pankaj Mayekar" },
-  { value: "Muthu Kumar", label: "Muthu Kumar" },
-  { value: "Muthukumaran", label: "Muthukumaran" },
-  { value: "Muthusamy", label: "Muthusamy" },
-  { value: "Nadhagopal", label: "Nadhagopal" },
-  { value: "Naeem Khan", label: "Naeem Khan" },
-  { value: "Narahari", label: "Narahari" },
-  { value: "Naveen", label: "Naveen" },
-  { value: "Naveen Kumar S", label: "Naveen Kumar S" },
-  { value: "Nithin", label: "Nithin" },
-  { value: "Pavan Kumar", label: "Pavan Kumar" },
-  { value: "Pradeepan", label: "Pradeepan" },
-  { value: "Prashant", label: "Prashant" },
-  { value: "Praveen", label: "Praveen" },
-  { value: "Ranjith", label: "Ranjith" },
-  { value: "Ravaan", label: "Ravaan" },
-  { value: "Ravichandran", label: "Ravichandran" },
-  { value: "Renganathan", label: "Renganathan" },
-  { value: "Roshan Karthick", label: "Roshan Karthick" },
-  { value: "Rushikesh Khoje", label: "Rushikesh Khoje" },
-  { value: "Sabarish", label: "Sabarish" },
-  { value: "Sabarivasan S R", label: "Sabarivasan S R" },
-  { value: "Sakthi Pradap", label: "Sakthi Pradap" },
-  { value: "Sameer Vasudev Monde", label: "Sameer Vasudev Monde" },
-  { value: "Santhosh", label: "Santhosh" },
-  { value: "Saranya", label: "Saranya" },
-  { value: "Saravanan", label: "Saravanan" },
-  { value: "Saravanakumar", label: "Saravanakumar" },
-  { value: "Sarvesh Mangesh Kotere", label: "Sarvesh Mangesh Kotere" },
-  { value: "Sathiya Prakash", label: "Sathiya Prakash" },
-  { value: "Sivaprakasan", label: "Sivaprakasan" },
-  { value: "Surya", label: "Surya" },
-  { value: "Suryaprakash Das", label: "Suryaprakash Das" },
-  { value: "Thameem", label: "Thameem" },
-  { value: "Thanush Kumaran", label: "Thanush Kumaran" },
-  { value: "Thirumal", label: "Thirumal" },
-  { value: "Varikutti Kalyan", label: "Varikutti Kalyan" },
-  { value: "Vamsi", label: "Vamsi" },
-  { value: "Vignesh Sasikumar", label: "Vignesh Sasikumar" },
-  { value: "Vinoth", label: "Vinoth" },
-  { value: "Yogesh", label: "Yogesh" },
-  { value: "Yuvaraj", label: "Yuvaraj" },
-];
+        { value: "Adhikesavan", label: "Adhikesavan" },
+        { value: "Adithiya", label: "Adithiya" },
+        { value: "Adaikalraj", label: "Adaikalraj" },
+        { value: "Ahamed Irfan", label: "Ahamed Irfan" },
+        { value: "Ahino Alex", label: "Ahino Alex" },
+        { value: "Ahs", label: "Ahs" },
+        { value: "Alex Pandian", label: "Alex Pandian" },
+        { value: "Alphino Alex", label: "Alphino Alex" },
+        { value: "Anbarasu", label: "Anbarasu" },
+        { value: "Aravindan", label: "Aravindan" },
+        { value: "Arivazhagan", label: "Arivazhagan" },
+        { value: "Arul Manikaraj", label: "Arul Manikaraj" },
+        { value: "Avinesh", label: "Avinesh" },
+        { value: "Bagavath", label: "Bagavath" },
+        { value: "Bala", label: "Bala" },
+        { value: "Balaji", label: "Balaji" },
+        { value: "Balan", label: "Balan" },
+        { value: "Bharathvaasan", label: "Bharathvaasan" },
+        { value: "Chandra", label: "Chandra" },
+        { value: "Deepak", label: "Deepak" },
+        { value: "Devesh Shivmuni Jaybhaye", label: "Devesh Shivmuni Jaybhaye" },
+        { value: "Dhanu Dh Basha", label: "Dhanu Dh Basha" },
+        { value: "Dharman", label: "Dharman" },
+        { value: "Dharani", label: "Dharani" },
+        { value: "Dhurai Murugan", label: "Dhurai Murugan" },
+        { value: "Dinesh", label: "Dinesh" },
+        { value: "Dinesh Kumar", label: "Dinesh Kumar" },
+        { value: "Dinesh S", label: "Dinesh S" },
+        { value: "Durai Murugan", label: "Durai Murugan" },
+        { value: "Gopi Chand", label: "Gopi Chand" },
+        { value: "Guganeshwaran", label: "Guganeshwaran" },
+        { value: "Gyanaranjan", label: "Gyanaranjan" },
+        { value: "Harish", label: "Harish" },
+        { value: "Hrushikesh Santosh Wathore", label: "Hrushikesh Santosh Wathore" },
+        { value: "Imran", label: "Imran" },
+        { value: "Jaba Durai", label: "Jaba Durai" },
+        { value: "Jegan", label: "Jegan" },
+        { value: "Jayaprakash", label: "Jayaprakash" },
+        { value: "Kailash", label: "Kailash" },
+        { value: "Kaif", label: "Kaif" },
+        { value: "Kalyan Varikuti", label: "Kalyan Varikuti" },
+        { value: "Kannan", label: "Kannan" },
+        { value: "Karthick Nagarajan", label: "Karthick Nagarajan" },
+        { value: "Kirubakaran", label: "Kirubakaran" },
+        { value: "Krishna", label: "Krishna" },
+        { value: "Lokesh", label: "Lokesh" },
+        { value: "Madhan Kumar", label: "Madhan Kumar" },
+        { value: "Maalik", label: "Maalik" },
+        { value: "Manibharathi", label: "Manibharathi" },
+        { value: "Manikandan", label: "Manikandan" },
+        { value: "Manoj Guru", label: "Manoj Guru" },
+        { value: "Manoj Kumar", label: "Manoj Kumar" },
+        { value: "Manoj Kumar T", label: "Manoj Kumar T" },
+        { value: "Mandaar Pankaj Mayekar", label: "Mandaar Pankaj Mayekar" },
+        { value: "Muthu Kumar", label: "Muthu Kumar" },
+        { value: "Muthukumaran", label: "Muthukumaran" },
+        { value: "Muthusamy", label: "Muthusamy" },
+        { value: "Nadhagopal", label: "Nadhagopal" },
+        { value: "Naeem Khan", label: "Naeem Khan" },
+        { value: "Narahari", label: "Narahari" },
+        { value: "Naveen", label: "Naveen" },
+        { value: "Naveen Kumar S", label: "Naveen Kumar S" },
+        { value: "Nithin", label: "Nithin" },
+        { value: "Pavan Kumar", label: "Pavan Kumar" },
+        { value: "Pradeepan", label: "Pradeepan" },
+        { value: "Prashant", label: "Prashant" },
+        { value: "Praveen", label: "Praveen" },
+        { value: "Ranjith", label: "Ranjith" },
+        { value: "Ravaan", label: "Ravaan" },
+        { value: "Ravichandran", label: "Ravichandran" },
+        { value: "Renganathan", label: "Renganathan" },
+        { value: "Roshan Karthick", label: "Roshan Karthick" },
+        { value: "Rushikesh Khoje", label: "Rushikesh Khoje" },
+        { value: "Sabarish", label: "Sabarish" },
+        { value: "Sabarivasan S R", label: "Sabarivasan S R" },
+        { value: "Sakthi Pradap", label: "Sakthi Pradap" },
+        { value: "Sameer Vasudev Monde", label: "Sameer Vasudev Monde" },
+        { value: "Santhosh", label: "Santhosh" },
+        { value: "Saranya", label: "Saranya" },
+        { value: "Saravanan", label: "Saravanan" },
+        { value: "Saravanakumar", label: "Saravanakumar" },
+        { value: "Sarvesh Mangesh Kotere", label: "Sarvesh Mangesh Kotere" },
+        { value: "Sathiya Prakash", label: "Sathiya Prakash" },
+        { value: "Siddesh", label: "Siddesh" },
+        { value: "Sivaprakasan", label: "Sivaprakasan" },
+        { value: "Surya", label: "Surya" },
+        { value: "Suryaprakash Das", label: "Suryaprakash Das" },
+        { value: "Thameem", label: "Thameem" },
+        { value: "Thanush Kumaran", label: "Thanush Kumaran" },
+        { value: "Thirumal", label: "Thirumal" },
+        { value: "Varikutti Kalyan", label: "Varikutti Kalyan" },
+        { value: "Vamsi", label: "Vamsi" },
+        { value: "Vignesh Sasikumar", label: "Vignesh Sasikumar" },
+        { value: "Vinoth", label: "Vinoth" },
+        { value: "Yogesh", label: "Yogesh" },
+        { value: "Yuvaraj", label: "Yuvaraj" },
+    ];
 
-
-
-    // Options for dropdowns
+    // Options for dropdowns (unchanged)
     const partFailureOptions = [
         { value: "NONE", label: "NONE" },
-        { value: "MNVR", label: "MNVR" },
-        { value: "HARNESS", label: "HARNESS" },
-        { value: "BDC", label: "BDC" },
-        { value: "S-CAM", label: "S-CAM" },
-        { value: "R-CAM", label: "R-CAM" },
-        { value: "POE SWITCH", label: "POE SWITCH" },
-        { value: "SPEAKER", label: "SPEAKER" },
-        { value: "MIC", label: "MIC" },
-        { value: "FRONT LED FIRST PCB", label: "FRONT LED FIRST PCB" },
-        { value: "FRONT LED SECOND PCB", label: "FRONT LED SECOND PCB" },
-        { value: "FRONT LED LAST PCB", label: "FRONT LED LAST PCB" },
-        { value: "REAR LED FIRST PCB", label: "REAR LED FIRST PCB" },
-        { value: "REAR LED SECOND PCB", label: "REAR LED SECOND PCB" },
-        { value: "SIDE LED FIRST PCB", label: "SIDE LED FIRST PCB" },
-        { value: "SIDE LED SECOND PCB", label: "SIDE LED SECOND PCB" },
-        { value: "INBUS LED FIRST PCB", label: "INBUS LED FIRST PCB" },
-        { value: "INBUS LED SECOND PCB", label: "INBUS LED SECOND PCB" },
-        { value: "CONTROL CARD", label: "CONTROL CARD" },
-        { value: "POWER CARD", label: "POWER CARD" },
-        { value: "FRC", label: "FRC" },
-        { value: "LED POWER LOOP PICTILE", label: "LED POWER LOOP PICTILE" },
-        { value: "POWER CARD CONNECTOR", label: "POWER CARD CONNECTOR" },
-        { value: "CONTROL CARD CONNECTOR", label: "CONTROL CARD CONNECTOR" },
-        { value: "RJ45 CONNECTOR DAMAGE", label: "RJ45 CONNECTOR DAMAGE" },
-        { value: "MOTHER BOARD", label: "MOTHER BOARD" },
-        { value: "BASE BOARD", label: "BASE BOARD" },
-        { value: "12V CONVERTER", label: "12V CONVERTER" },
-        { value: "UFL", label: "UFL" },
-        { value: "ANTENNA", label: "ANTENNA" },
-        { value: "MRS CONNECTOR", label: "MRS CONNECTOR" },
-        { value: "HARDDISK", label: "HARDDISK" },
-        { value: "SIM CARD", label: "SIM CARD" },
-        { value: "SATA CABLE", label: "SATA CABLE" },
-        { value: "HARDDISK POWER PICTILE", label: "HARDDISK POWER PICTILE" },
-        { value: "VGA PICTILE", label: "VGA PICTILE" },
-        { value: "UART PICTILE", label: "UART PICTILE" },
-        { value: "6 PIN TO 4 PIN PICTILE", label: "6 PIN TO 4 PIN PICTILE" },
-        { value: "EC QUECTEL MODEM", label: "EC QUECTEL MODEM" },
-        { value: "LITHIUM BATTERY", label: "LITHIUM BATTERY" },
-        { value: "3AMP FUSE", label: "3AMP FUSE" },
-        { value: "BOX END BULCONNECTOR MALE", label: "BOX END BULCONNECTOR MALE" },
-        { value: "BOX END BULCONNECTOR FEMALE", label: "BOX END BULCONNECTOR FEMALE" },
-        { value: "AMPLIFIER", label: "AMPLIFIER" },
+        { value: "12V POWER SUPPLY", label: "12V POWER SUPPLY" },
+        { value: "AMPLIFIER MODULE", label: "AMPLIFIER MODULE" },
+        { value: "BASEBOARD", label: "BASEBOARD" },
         { value: "CAN MODULE", label: "CAN MODULE" },
-        { value: "BOX END MRS CONNECTOR", label: "BOX END MRS CONNECTOR" },
-        { value: "BOX END INDICATION PICTILE", label: "BOX END INDICATION PICTILE" },
+        { value: "FUSE 3AMS", label: "FUSE 3AMS" },
+        { value: "MNVR 4 LAYER", label: "MNVR 4 LAYER" },
+        { value: "MNVR 6 LAYER", label: "MNVR 6 LAYER" },
+        { value: "MNVR CONVERTED", label: "MNVR CONVERTED" },
+        { value: "MOTHERBOARD", label: "MOTHERBOARD" },
+        { value: "MRS 8PIN CONNECTOR", label: "MRS 8PIN CONNECTOR" },
+        { value: "POWER PICTAIL - BOX", label: "POWER PICTAIL - BOX" },
+        { value: "QUECTEL CE/MODEM", label: "QUECTEL CE/MODEM" },
+        { value: "SSD/HARD DISK", label: "SSD/HARD DISK" },
+        { value: "TAMPER SWITCH", label: "TAMPER SWITCH" },
+        { value: "MAIN CONNECTOR MALE", label: "MAIN CONNECTOR MALE" },
+        { value: "MAIN CONNECTOR FEMALE", label: "MAIN CONNECTOR FEMALE" },
+        { value: "UFL MALE AND FEMALE", label: "UFL MALE AND FEMALE" },
+        { value: "RMC PIGTAILS", label: "RMC PIGTAILS" },
+        { value: "10 PIN TO 10 PIN", label: "10 PIN TO 10 PIN" },
+        { value: "3PIN TO 2 PIN", label: "3PIN TO 2 PIN" },
+        { value: "VGA CABLE", label: "VGA CABLE" },
+        { value: "6 PIN TO 4 TO 4 PIN", label: "6 PIN TO 4 TO 4 PIN" },
+        { value: "SATA CABLE", label: "SATA CABLE" },
+        { value: "SATA POWER CABLE", label: "SATA POWER CABLE" },
+        { value: "SSD CLAMP", label: "SSD CLAMP" },
+        { value: "SSD TRAY", label: "SSD TRAY" },
+        { value: "SSD CAP", label: "SSD CAP" },
+        { value: "INDICATOR LED", label: "INDICATOR LED" },
+        { value: "LED PANEL", label: "LED PANEL" },
+        { value: "FRONT 1ST CARD", label: "FRONT 1ST CARD" },
+        { value: "FRONT 2ND CARD", label: "FRONT 2ND CARD" },
+        { value: "FRONT 3RD CARD", label: "FRONT 3RD CARD" },
+        { value: "FRONT SAMLL CARD", label: "FRONT SAMLL CARD" },
+        { value: "FRONT CONTROL CARD", label: "FRONT CONTROL CARD" },
+        { value: "SIDE 1ST CARD", label: "SIDE 1ST CARD" },
+        { value: "2ND CARD", label: "2ND CARD" },
+        { value: "3RD CARD", label: "3RD CARD" },
+        { value: "SIDE CONTROL CARD", label: "SIDE CONTROL CARD" },
+        { value: "REAR 1ST CARD", label: "REAR 1ST CARD" },
+        { value: "2ND CARD", label: "2ND CARD" },
+        { value: "3RD CARD", label: "3RD CARD" },
+        { value: "REAR CONTROL CARD", label: "REAR CONTROL CARD" },
+        { value: "1ST CARD", label: "1ST CARD" },
+        { value: "2ND CARD", label: "2ND CARD" },
+        { value: "INBUS COUNTROL CARD", label: "INBUS COUNTROL CARD" },
+        { value: "5V POWER SUPPLY", label: "5V POWER SUPPLY" },
+        { value: "FRC 10 PIN (2 ROW)", label: "FRC 10 PIN (2 ROW)" },
+        { value: "4 PIN POWER PIGTAIL", label: "4 PIN POWER PIGTAIL" },
+        { value: "2 PIN POWER PIGTAIIL", label: "2 PIN POWER PIGTAIIL" },
+        { value: "16 PIN CONNECTOR", label: "16 PIN CONNECTOR" },
+        { value: "LDR PIGTAIL", label: "LDR PIGTAIL" },
+        { value: "LAN CABLE", label: "LAN CABLE" },
+        { value: "PEOPLE COUNT CAM", label: "PEOPLE COUNT CAM" },
+        { value: "POE SWICH", label: "POE SWICH" },
+        { value: "CAMERA", label: "CAMERA" },
+        { value: "CAMERA 166", label: "CAMERA 166" },
+        { value: "CAMERA 167", label: "CAMERA 167" },
+        { value: "CAMERA 168", label: "CAMERA 168" },
+        { value: "POWER PICTAIL - CAM", label: "POWER PICTAIL - CAM" },
+        { value: "REAR CAMERA", label: "REAR CAMERA" },
+        { value: "SERVILANCE CAMERA SCAM", label: "SERVILANCE CAMERA SCAM" },
+        { value: "BDC", label: "BDC" },
+        { value: "MIC", label: "MIC" },
+        { value: "ANTENNA", label: "ANTENNA" },
+        { value: "SPEAKER", label: "SPEAKER" },
+        { value: "BAFO", label: "BAFO" },
+        { value: "OTG", label: "OTG" },
+        { value: "USB EXTENDER MALE TO FEMALE(2.0)", label: "USB EXTENDER MALE TO FEMALE(2.0)" },
+        { value: "TTL", label: "TTL" },
+        { value: "ST LINK", label: "ST LINK" },
+        { value: "RS 485", label: "RS 485" },
+        { value: "PENDRIVE", label: "PENDRIVE" },
+        { value: "SCREW DRIVER", label: "SCREW DRIVER" },
+        { value: "CUTTER", label: "CUTTER" },
+        { value: "KNIFE", label: "KNIFE" },
+        { value: "INSULATION TAPE", label: "INSULATION TAPE" },
+        { value: "MULTI-METER", label: "MULTI-METER" },
+        { value: "USB TO 4PIN RMC", label: "USB TO 4PIN RMC" },
+        { value: "USB TO SATA", label: "USB TO SATA" },
+        { value: "LAN CABLE AND EXTENDER", label: "LAN CABLE AND EXTENDER" },
+        { value: "3PIN TO 3PIN PICTAIL", label: "3PIN TO 3PIN PICTAIL" },
+        { value: "10PIN TO 3PIN PICTAL", label: "10PIN TO 3PIN PICTAL" },
+        { value: "CAN CABLE", label: "CAN CABLE" },
+        { value: "TTL STOMING PICTILES", label: "TTL STOMING PICTILES" },
+        { value: "USB EXTENDER", label: "USB EXTENDER" },
+        { value: "INSOLATION TAPE", label: "INSOLATION TAPE" },
+        { value: "NET DRIVE", label: "NET DRIVE" },
+        { value: "NET DRIVE 5MM", label: "NET DRIVE 5MM" },
+        { value: "NET DRIVE 5.5MM", label: "NET DRIVE 5.5MM" },
+        { value: "NET DRIVE 7", label: "NET DRIVE 7" },
+        { value: "NET DRIVE8", label: "NET DRIVE8" },
+        { value: "NOSE PLAYER", label: "NOSE PLAYER" },
+        { value: "RMC PICTAILS", label: "RMC PICTAILS" },
+        { value: "SCREW DRIVER SMALL BIG", label: "SCREW DRIVER SMALL BIG" },
+        { value: "SCROW DRIVE BIG", label: "SCROW DRIVE BIG" },
+        { value: "SOLDERING", label: "SOLDERING" },
+        { value: "SOLDRING WITH LEAD", label: "SOLDRING WITH LEAD" },
+        { value: "SPANNER 14", label: "SPANNER 14" },
+        { value: "SPANNER 13", label: "SPANNER 13" },
+        { value: "SPANNER 7 AND 10", label: "SPANNER 7 AND 10" },
+        { value: "ST LINK AND RJ485", label: "ST LINK AND RJ485" },
+        { value: "TWEEZER", label: "TWEEZER" },
+        { value: "UFL CONNECTOR", label: "UFL CONNECTOR" },
+        { value: "USB TO 4PIN RMC & RMC TO USB CONNECTOR", label: "USB TO 4PIN RMC & RMC TO USB CONNECTOR" },
+        { value: "LAN CRIMPING TOOL RJ45", label: "LAN CRIMPING TOOL RJ45" },
+        { value: "LAN TESTER", label: "LAN TESTER" }
     ];
 
     const requiredSparesOptions = partFailureOptions;
@@ -229,7 +292,6 @@ function Data() {
                 ...prev,
                 validatorName: user.username
             }));
-            // Also save to localStorage for persistence
             localStorage.setItem('validatorName', user.username);
         }
     }, [user]);
@@ -245,10 +307,6 @@ function Data() {
         }
     }, []);
 
-
-
-
-    // Your other functions remain the same...
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
         if (type === "file") {
@@ -335,7 +393,7 @@ function Data() {
         setShowDropdown(false);
     };
 
-    // Reset form
+    // Reset form - Updated with new fields
     const resetForm = () => {
         const currentValidator = formData.validatorName;
         setFormData({
@@ -344,14 +402,23 @@ function Data() {
             depo: "",
             fleetNumber: "",
             imeiNumber: "",
+            simId: "", // Reset new field
+            vinNumber: "", // Reset new field
+            newImeiNumber: "", // Reset new field
             serviceType: "",
             projectName: "",
+            // Check Status specific
+            checkType: "",
+            // Preventive specific
             preventiveSection: {},
             vehicleStatus: "",
+            // Complaints specific
             reportStatus: "",
+            // Updates specific
             objective: "",
             updateStatus: "",
             reasonForPending: "",
+            // Common fields
             odometer: "",
             partFailure: [],
             partFailureImage: null,
@@ -377,11 +444,10 @@ function Data() {
 
     // Validate form based on service type
     const validateForm = () => {
-        // Basic required fields - removed validation
         return true;
     };
 
-    // Handle form submit
+    // Handle form submit - Updated with new fields
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -415,7 +481,7 @@ function Data() {
             const updatesFile = await toBase64(formData.updatesFile);
             const tamperingImage = await toBase64(formData.tamperingImage);
 
-            // Prepare payload
+            // Prepare payload with new fields
             const payload = {
                 ...formData,
                 preventiveFile,
@@ -436,7 +502,7 @@ function Data() {
 
             // Send to Google Apps Script
             const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbybKi0HWuKMHuqVkySmUNXuk_tX-VVChg6Y2zFx2UYBvNXzpnmDVoJ-FJiEFrOR2lMkxg/exec",
+                "https://script.google.com/macros/s/AKfycbyl91Fol8_AgZWbquuhKnNfvtbbiVn5UiLfmqGjgDNxzrqPZ1L5xRZXr2zpfOEIYoplgg/exec",
                 {
                     method: "POST",
                     body: JSON.stringify(payload),
@@ -931,7 +997,6 @@ function Data() {
                     <button type="button" onClick={() => handleMarkAll("NOT_OKAY")} className="btn btn-danger btn-sm">
                         All Not OK
                     </button>
-
                 </div>
 
                 <div className="preventive-table-container">
@@ -1136,6 +1201,28 @@ function Data() {
         </>
     );
 
+    // Render check status section (simplified - only dropdown)
+    const renderCheckStatusSection = () => (
+        <>
+            <div className="form-group">
+                <label>Check Type:</label>
+                <select
+                    name="checkType"
+                    value={formData.checkType}
+                    onChange={handleChange}
+                >
+                    <option value="">Select Check Type</option>
+                    <option value="Announcement Check">Announcement Check</option>
+                    <option value="2-line Check">2-line Check</option>
+                    <option value="10-line Check">10-line Check</option>
+                </select>
+            </div>
+
+            {renderNoneFields()}
+            {renderTechnicalAndTamperingFields()}
+        </>
+    );
+
     return (
         <div className="switch container mt-5">
             <h2>Data Service Form</h2>
@@ -1169,7 +1256,6 @@ function Data() {
                         required
                         placeholder="Loading username..."
                     />
-
                 </div>
 
                 {/* Engineer Name */}
@@ -1250,8 +1336,46 @@ function Data() {
                     <label>IMEI Number:</label>
                     <input
                         type="text"
+                        name="imeiNumber"
                         value={formData.imeiNumber}
-                        onChange={(e) => setFormData((prev) => ({ ...prev, imeiNumber: e.target.value }))}
+                        onChange={handleChange}
+                        placeholder="Enter IMEI Number"
+                    />
+                </div>
+
+                {/* SIM ID - Corrected with name attribute */}
+                <div className="form-group">
+                    <label>SIM ID:</label>
+                    <input
+                        type="text"
+                        name="simId"
+                        value={formData.simId}
+                        onChange={handleChange}
+                        placeholder="Enter SIM ID"
+                    />
+                </div>
+
+                {/* VIN NUMBER - Corrected with name attribute */}
+                <div className="form-group">
+                    <label>VIN NUMBER:</label>
+                    <input
+                        type="text"
+                        name="vinNumber"
+                        value={formData.vinNumber}
+                        onChange={handleChange}
+                        placeholder="Enter VIN Number"
+                    />
+                </div>
+
+                {/* NEW IMEI NUMBER - Corrected with name attribute */}
+                <div className="form-group">
+                    <label>NEW IMEI NUMBER:</label>
+                    <input
+                        type="text"
+                        name="newImeiNumber"
+                        value={formData.newImeiNumber}
+                        onChange={handleChange}
+                        placeholder="Enter New IMEI Number"
                     />
                 </div>
 
@@ -1264,6 +1388,7 @@ function Data() {
                         onChange={handleChange}
                     >
                         <option value="">Select</option>
+                        <option value="Check Status">Check Status</option>
                         <option value="Preventive">Preventive</option>
                         <option value="Complaints">Complaints</option>
                         <option value="Updates">Updates</option>
@@ -1271,6 +1396,7 @@ function Data() {
                 </div>
 
                 {/* Render appropriate section based on service type */}
+                {formData.serviceType === "Check Status" && renderCheckStatusSection()}
                 {formData.serviceType === "Preventive" && renderPreventiveSection()}
                 {formData.serviceType === "Complaints" && renderComplaintsSection()}
                 {formData.serviceType === "Updates" && renderUpdatesSection()}
@@ -1280,6 +1406,9 @@ function Data() {
                     <button type="submit" disabled={submitting} className="btn btn-primary">
                         {submitting ? "Saving..." : "Submit"}
                     </button>
+                    {/* <button type="button" onClick={resetForm} className="btn btn-secondary">
+                        Reset Form
+                    </button> */}
                 </div>
             </form>
         </div>
