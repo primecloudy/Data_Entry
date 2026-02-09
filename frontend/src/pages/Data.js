@@ -10,6 +10,8 @@ function Data() {
     const [fleetData, setFleetData] = useState([]);
     const [submitting, setSubmitting] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
+    const [fieldEngineerFormTime, setFieldEngineerFormTime] = useState("");
+
 
     // Form state - Updated with new fields
     const [formData, setFormData] = useState({
@@ -155,6 +157,7 @@ function Data() {
         { value: "Vinoth", label: "Vinoth" },
         { value: "Yogesh", label: "Yogesh" },
         { value: "Yuvaraj", label: "Yuvaraj" },
+        { value: "Gaurav murkhe", label: "Gaurav murkhe" },
     ];
 
     // Options for dropdowns (unchanged)
@@ -484,6 +487,7 @@ function Data() {
             // Prepare payload with new fields
             const payload = {
                 ...formData,
+                fieldEngineerFormTime,
                 preventiveFile,
                 partFailureImage,
                 partReplaceImage,
@@ -502,7 +506,7 @@ function Data() {
 
             // Send to Google Apps Script
             const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbyl91Fol8_AgZWbquuhKnNfvtbbiVn5UiLfmqGjgDNxzrqPZ1L5xRZXr2zpfOEIYoplgg/exec",
+                "https://script.google.com/macros/s/AKfycbxbNOl4DWeUtfrhUpQrD8fY-7GgCTU-JHb91-Qv6r2wL06WJman7avSLVwRjSdo1F0-lw/exec",
                 {
                     method: "POST",
                     body: JSON.stringify(payload),
@@ -1227,6 +1231,16 @@ function Data() {
         <div className="switch container mt-5">
             <h2>Data Service Form</h2>
             <form onSubmit={handleSubmit} className="form-container">
+
+                 <div className="form-group">
+                   <label>Field Engineer Form Time</label>
+<input
+  type="time"
+  value={fieldEngineerFormTime}
+  onChange={(e) => setFieldEngineerFormTime(e.target.value)}
+/>
+
+                </div>
 
                 <div className="form-group">
                     <label>Project Name:</label>
