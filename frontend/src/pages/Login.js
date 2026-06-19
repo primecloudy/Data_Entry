@@ -2,8 +2,7 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import "./Login.css";
-import primeLogo from "../assets/primeedge.png";
-import bgImage from "../assets/bus.png";
+import bg from "../assets/bg.png";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
@@ -53,7 +52,7 @@ const Login = () => {
     <div
       className="login-wrapper"
       style={{
-        backgroundImage: `url(${bgImage})`,
+        backgroundImage: `url(${bg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -62,8 +61,7 @@ const Login = () => {
       <form onSubmit={handleLogin} className="glass-card">
         {/* Company Logo & Name */}
         <div className="company-header">
-          <img src={primeLogo} alt="Company Logo" className="company-logo" />
-          <h2 className="company-name">Prime Edge Info Solutions Pvt Ltd</h2>
+          <h2 className="company-name">VLTS Control Room Employee Login</h2>
         </div>
 
         <input

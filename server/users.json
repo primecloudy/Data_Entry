@@ -5,28 +5,73 @@
     "role": "admin"
   },
   {
-    "username": "raj",
-    "password": "raj123",
+    "username": "Yuvarani R",
+    "password": "Cdac@121",
     "role": "user"
   },
   {
-    "username": "Validator1",
-    "password": "Prime@121",
+    "username": "Pavankumar",
+    "password": "Cdac@456",
     "role": "user"
   },
   {
-    "username": "Validator2",
-    "password": "Prime@212",
+    "username": "Palavesa Muthu Raj P",
+    "password": "Cdac@765",
     "role": "user"
   },
   {
-    "username": "Validator3",
-    "password": "Prime@789",
+    "username": "Muruganantham",
+    "password": "Cdac@845",
     "role": "user"
   },
   {
-    "username": "Validator4",
-    "password": "Prime@453",
+    "username": "Swetha",
+    "password": "Cdac@366",
+    "role": "user"
+  },
+  {
+    "username": "Baskar K",
+    "password": "Cdac@374",
+    "role": "user"
+  },
+  {
+    "username": "Mohan Gandhi R",
+    "password": "Cdac@845",
+    "role": "user"
+  },
+  {
+    "username": "Naveenkumar",
+    "password": "Cdac@432",
+    "role": "user"
+  },
+  {
+    "username": "George Kishore",
+    "password": "Kishore@2004",
+    "role": "user"
+  },
+  {
+    "username": "Ramanujam",
+    "password": "Naga@290519",
+    "role": "admin"
+  },
+  {
+    "username": "Ramanujam Alagiri",
+    "password": "Naga@290519",
+    "role": "user"
+  },
+  {
+    "username": "Akash Saravanan",
+    "password": "akash@2312",
+    "role": "user"
+  },
+  {
+    "username": "Sheldon Mathew",
+    "password": "killmonger@123",
+    "role": "user"
+  },
+  {
+    "username": "test",
+    "password": "test",
     "role": "user"
   }
 ]

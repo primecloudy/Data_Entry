@@ -1,165 +1,514 @@
-/* Background with gradient animation */
+/* ============================================
+   VLTS Control Room - Professional Login CSS
+   Tamil Nadu Government Theme
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+/* ============================================
+   MAIN CONTAINER
+   ============================================ */
+
 .login-wrapper {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Overlay for better readability */
+.login-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(30, 60, 114, 0.85) 0%, rgba(42, 82, 152, 0.85) 100%);
+    z-index: 1;
 }
 
-/* Glassmorphism card */
+/* ============================================
+   GLASS CARD - Professional Design
+   ============================================ */
+
 .glass-card {
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 18px;
-  padding: 2.5rem;
-  width: 380px;
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
-  text-align: center;
-  animation: floatCard 6s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
+    padding: 2.5rem;
+    width: 420px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    animation: slideUp 0.6s ease-out;
+    backdrop-filter: blur(10px);
 }
 
-@keyframes floatCard {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* Typing animation for Title */
-.glass-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid #fff;
-  width: 0;
-  animation: typing 2s steps(6, end) forwards, blink 0.7s infinite;
-  background: linear-gradient(90deg, #ff8a00, #e52e71, #6a11cb, #2575fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* ============================================
+   HEADER SECTION
+   ============================================ */
+
+.company-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #eef2f6;
 }
 
-@keyframes typing {
-  from { width: 0 }
-  to { width: 6ch }
+.company-name {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1e3c72;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin: 0;
+    position: relative;
+    display: inline-block;
 }
 
-@keyframes blink {
-  50% { border-color: transparent }
+.company-name::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 3px;
 }
 
-/* Fade-in Slide animation */
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
 
-/* Inputs */
+/* Input Fields */
 .glass-input {
-  width: 100%;
-  margin: 10px 0;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 1px solid rgba(245, 245, 245, 0.3);
-  background: rgba(255, 252, 252, 0.1);
-  color: #fff;
-  font-size: 1rem;
-  outline: none;
-  transition: 0.1s ease;
-  opacity: 0;
-  animation: fadeSlideUp 0.4s ease forwards;
-  
+    width: 100%;
+    margin: 12px 0;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 2px solid #e0e7ff;
+    background: #f8fafc;
+    color: #1e293b;
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+    transition: all 0.3s ease;
 }
 
-.glass-input:nth-of-type(1) { animation-delay: 1.2s; }
-.glass-input:nth-of-type(2) { animation-delay: 1.5s; }
-.glass-input::placeholder { color: rgb(19, 19, 19); }
+.glass-input:hover {
+    border-color: #667eea;
+    background: #ffffff;
+}
 
 .glass-input:focus {
-  border-color: #00ffe7;
-  box-shadow: 0 0 10px #9eacaa;
-  background: rgba(252, 244, 244, 0.76);
+    border-color: #667eea;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
 }
 
-/* Button */
+.glass-input::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+}
+
+/* Sequential animation for inputs */
+.glass-input:nth-of-type(1) {
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
+}
+
+.glass-input:nth-of-type(2) {
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Login Button */
 .glass-btn {
-  width: 100%;
-  margin-top: 15px;
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(90deg, #36d1dc, #5b86e5);
-  color: #fff;
-  font-weight: bold;
-  font-size: 1.1rem;
-  cursor: pointer;
-  box-shadow: 0 0 15px rgba(91,134,229,0.5);
-  transition: all 0.3s ease;
-  opacity: 0;
-  animation: fadeSlideUp 0.8s ease forwards;
-  animation-delay: 1.9s;
+    width: 100%;
+    margin-top: 24px;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease forwards;
+    animation-delay: 0.4s;
+    opacity: 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.glass-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
 }
 
 .glass-btn:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(231, 232, 233, 0.9);
-}
-.company-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(30, 60, 114, 0.5);
+    background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
 }
 
-.company-logo {
-  width: 120px;           /* larger for visibility */
-  height: auto;           /* keeps aspect ratio */
-  margin-bottom: 15px;
-  display: block;
-
-  /* Glow effect */
-  filter: drop-shadow(0 0 12px rgba(91, 134, 229, 0.8))
-          drop-shadow(0 0 24px rgba(54, 209, 220, 0.6));
-
-  /* Smooth animation */
-  animation: floatLogo 4s ease-in-out infinite;
-  transition: transform 0.3s ease, filter 0.3s ease;
+.glass-btn:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
-.company-logo:hover {
-  transform: scale(1.1) rotate(3deg); /* zoom + tilt */
-  filter: drop-shadow(0 0 20px rgba(255, 138, 0, 0.9))
-          drop-shadow(0 0 30px rgba(229, 46, 113, 0.7));
+.glass-btn:active {
+    transform: translateY(0);
+    box-shadow: none;
 }
 
-@keyframes floatLogo {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+/* ============================================
+   ADDITIONAL FEATURES
+   ============================================ */
+
+/* Error Message Styling */
+.error-message {
+    background: #fee2e2;
+    border-left: 4px solid #ef4444;
+    color: #b91c1c;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    animation: shake 0.5s ease;
 }
 
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
 
-.company-name {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #37aee6;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  /* background: linear-gradient(90deg, #ff8a00, #e52e71, #6a11cb, #2575fc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
+.error-message::before {
+    content: '⚠️';
+    font-size: 1.1rem;
+}
+
+/* Success Message */
+.success-message {
+    background: #dcfce7;
+    border-left: 4px solid #22c55e;
+    color: #166534;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.success-message::before {
+    content: '✓';
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Remember Me & Forgot Password */
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 0 8px;
+    font-size: 0.95rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4b5563;
+    cursor: pointer;
+}
+
+.remember-me input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #1e3c72;
+}
+
+.forgot-password {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+/* Security Notice */
+.security-notice {
+    margin-top: 24px;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px dashed #cbd5e1;
+    font-size: 0.85rem;
+    color: #64748b;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.security-notice::before {
+    content: '🔒';
+    font-size: 1rem;
+}
+
+/* Loading State */
+.glass-btn.loading {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+}
+
+.glass-btn.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   FOOTER / GOVERNMENT CREDENTIALS
+   ============================================ */
+
+.govt-footer {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    font-size: 0.9rem;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.govt-footer p {
+    margin: 5px 0;
+    opacity: 0.9;
+}
+
+.govt-footer .emergency {
+    color: #ffd700;
+    font-weight: 600;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 480px) {
+    .glass-card {
+        width: 90%;
+        padding: 2rem 1.5rem;
+        margin: 20px;
+    }
+
+    .company-name {
+        font-size: 1.3rem;
+    }
+
+    .glass-input {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+
+    .glass-btn {
+        padding: 12px;
+        font-size: 1rem;
+    }
+
+    .login-options {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .govt-footer {
+        font-size: 0.8rem;
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 360px) {
+    .glass-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .company-name {
+        font-size: 1.1rem;
+    }
+}
+
+/* ============================================
+   ANIMATIONS & EFFECTS
+   ============================================ */
+
+/* Pulse animation for emergency */
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.emergency {
+    animation: pulse 2s infinite;
+}
+
+/* Focus ring for accessibility */
+.glass-input:focus-visible,
+.glass-btn:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Disabled state */
+.glass-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.glass-btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    .login-wrapper {
+        background: white;
+    }
+
+    .glass-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+
+    .glass-btn,
+    .govt-footer {
+        display: none;
+    }
+}
+
+/* ============================================
+   HIGH CONTRAST MODE
+   ============================================ */
+
+@media (prefers-contrast: high) {
+    .glass-card {
+        border: 2px solid black;
+        background: white;
+    }
+
+    .glass-input {
+        border: 2px solid black;
+        background: white;
+        color: black;
+    }
+
+    .glass-btn {
+        background: black;
+        color: white;
+        border: 2px solid black;
+    }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .glass-card,
+    .glass-input,
+    .glass-btn,
+    .glass-btn::before,
+    .error-message,
+    .emergency {
+        animation: none;
+        transition: none;
+    }
 }
